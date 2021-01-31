@@ -41,17 +41,45 @@ public class App {
 
 		mostrarTablero(tablero);
 
-		if (jugando) {
+		while (jugando) {
 			moverPieza(tablero, turnoActual);
 			turnoActual = !turnoActual;
-			
-			if(haTerminado()) {
+
+			if(haTerminado(tablero)) {
 				jugando = false;
+			}else {
+				System.out.print("Cambio de turno -> ");
+				if(turnoActual) {
+					System.out.print("O\n");
+				}else {
+					System.out.print("X\n");
+				}
 			}
 			
 		}
 
 
+	}
+
+	private static boolean haTerminado(char[][] tablero) {
+		
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+
+				// Si O está en fila 0 gana
+				if(tablero[i][j] == 'O' && i == 0) {
+					System.out.println("Ganan O");
+					return true;
+				}else if (tablero[i][j] == 'X' && i == 7) {
+					System.out.println("Ganan X");
+					return true;
+				}
+				
+			}
+		}
+		
+		return false;
+		
 	}
 
 	private static void moverPieza(char[][] tablero, boolean turno) {
@@ -65,7 +93,6 @@ public class App {
 			int fila = teclado.nextInt();
 			System.out.println("Columna (0-7)");
 			int columna = teclado.nextInt();
-			System.out.println(tablero[fila][columna]);
 
 			if(tablero[fila][columna] == 'O' && turno) {
 
