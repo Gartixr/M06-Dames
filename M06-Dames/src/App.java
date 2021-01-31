@@ -1,4 +1,7 @@
+import damas.entity.DatosPartida;
+import damas.util.HibernateUtil;
 import java.util.Scanner;
+import org.hibernate.Session;
 
 public class App {
 
@@ -6,6 +9,8 @@ public class App {
 
 	public static void main(String[] args) {
 
+                Session session = HibernateUtil.getSessionFactory().openSession();
+            
 		boolean jugar = true;
 		char tablero[][] = {{'X', '·', 'X', '·', 'X', '·', 'X', '·'},
 				{'·', 'X', '·', 'X', '·', 'X', '·', 'X'},
@@ -24,7 +29,7 @@ public class App {
 		int input = teclado.nextInt();
 
 		if(input == 1) {
-			jugar(tablero, turno);
+			jugar(tablero, turno,session);
 		} else if (input == 2) {
 			//cargar();
 		} else {
@@ -33,19 +38,22 @@ public class App {
 
 	}
 
-	private static void jugar(char[][] tablero, boolean turno) {
+	private static void jugar(char[][] tablero, boolean turno, Session session) {
 
 		boolean jugando = true;
 		boolean turnoActual = turno;
+                DatosPartida dp = new DatosPartida(turno, jugando);
 
 		mostrarTablero(tablero);
 
 		while (jugando) {
 			moverPieza(tablero, turnoActual);
 			turnoActual = !turnoActual;
+                        dp.setTurno(turnoActual);
 
 			if(haTerminado(tablero)) {
 				jugando = false;
+                                dp.setJugando(jugando);
 			}else {
 				System.out.print("Cambio de turno -> ");
 				if(turnoActual) {
@@ -54,7 +62,7 @@ public class App {
 					System.out.print("X\n");
 				}
 			}
-			
+                    session.save(dp);
 		}
 
 
