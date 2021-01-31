@@ -5,17 +5,16 @@ public class App {
 	static Scanner teclado = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		boolean jugar = true;
-		char tablero[][] = {{'X', '·', 'X', '·', 'X', '·', 'X', '·'},
-				{'·', 'X', '·', 'X', '·', 'X', '·', 'X'},
-				{'·', '·', '·', '·', '·', '·', '·', '·'},
-				{'·', '·', '·', '·', '·', '·', '·', '·'},
-				{'·', '·', '·', '·', '·', '·', '·', '·'},
-				{'·', '·', '·', '·', '·', '·', '·', '·'},
-				{'O', '·', 'O', '·', 'O', '·', 'O', '·'},
-				{'·', 'O', '·', 'O', '·', 'O', '·', 'O'}};
+		char tablero[][] = {{'X', 'Â·', 'X', 'Â·', 'X', 'Â·', 'X', 'Â·'},
+				{'Â·', 'X', 'Â·', 'X', 'Â·', 'X', 'Â·', 'X'},
+				{'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·'},
+				{'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·'},
+				{'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·'},
+				{'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·', 'Â·'},
+				{'O', 'Â·', 'O', 'Â·', 'O', 'Â·', 'O', 'Â·'},
+				{'Â·', 'O', 'Â·', 'O', 'Â·', 'O', 'Â·', 'O'}};
 
 		// true = O - false = x
 		boolean turno = true;
@@ -75,7 +74,7 @@ public class App {
 					contX++;
 				}
 				
-				// Si O está en fila 0 gana
+				// Si O estÂ· en fila 0 gana
 				if(tablero[i][j] == 'O' && i == 0) {
 					System.out.println("Ganan O");
 					return true;
@@ -119,8 +118,8 @@ public class App {
 				System.out.println("Columna (0-7)");
 				int columna2 = teclado.nextInt();
 
-				if(tablero[fila2][columna2] == 'X' || tablero[fila2][columna2] == '·') {
-					tablero[fila][columna] = '·';
+				if(tablero[fila2][columna2] == 'X' || tablero[fila2][columna2] == 'Â·') {
+					tablero[fila][columna] = 'Â·';
 					tablero[fila2][columna2] = 'O';
 					piezaValida = !piezaValida;
 					mostrarTablero(tablero);
@@ -137,8 +136,8 @@ public class App {
 				System.out.println("Columna (0-7)");
 				int columna2 = teclado.nextInt();
 
-				if(tablero[fila2][columna2] == 'O' || tablero[fila2][columna2] == '·') {
-					tablero[fila][columna] = '·';
+				if(tablero[fila2][columna2] == 'O' || tablero[fila2][columna2] == 'Â·') {
+					tablero[fila][columna] = 'Â·';
 					tablero[fila2][columna2] = 'X';
 					piezaValida = !piezaValida;
 					mostrarTablero(tablero);
@@ -147,7 +146,7 @@ public class App {
 				}
 
 			} else {
-				System.out.println("Pieza/posición invalida");
+				System.out.println("Pieza/posiciÂ·n invalida");
 			}
 		}
 
