@@ -63,9 +63,18 @@ public class App {
 
 	private static boolean haTerminado(char[][] tablero) {
 		
+		int contO = 0;
+		int contX = 0;
+		
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 
+				if(tablero[i][j] == 'O') {
+					contO++;
+				}else if(tablero[i][j] == 'X') {
+					contX++;
+				}
+				
 				// Si O está en fila 0 gana
 				if(tablero[i][j] == 'O' && i == 0) {
 					System.out.println("Ganan O");
@@ -76,6 +85,14 @@ public class App {
 				}
 				
 			}
+		}
+		
+		if(contO == 0) {
+			System.out.println("Ganan X");
+			return true;
+		}else if (contX == 0) {
+			System.out.println("Ganan O");
+			return true;
 		}
 		
 		return false;
