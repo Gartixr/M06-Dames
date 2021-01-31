@@ -1,4 +1,5 @@
 import damas.entity.DatosPartida;
+import damas.entity.Movimientos;
 import damas.util.HibernateUtil;
 import java.util.Scanner;
 import org.hibernate.Session;
@@ -109,27 +110,38 @@ public class App {
 	private static void moverPieza(char[][] tablero, boolean turno) {
 		// TODO Auto-generated method stub
 
+                
+                int fila = -1;
+                int columna = -1;
+                int fila2 = -1;
+                int columna2 = -1;
+                Movimientos movimientos = new Movimientos(fila, columna, fila2, columna2);
+                
 		boolean piezaValida = false;
 
 		while (!piezaValida) {
 			System.out.println("Pieza a mover");
 			System.out.println("Fila (0-7)");
-			int fila = teclado.nextInt();
+			fila = teclado.nextInt();
 			System.out.println("Columna (0-7)");
-			int columna = teclado.nextInt();
+			columna = teclado.nextInt();
 
 			if(tablero[fila][columna] == 'O' && turno) {
 
 				System.out.println("Nuevo destino");
 				System.out.println("Fila (0-7)");
-				int fila2 = teclado.nextInt();
+				fila2 = teclado.nextInt();
 				System.out.println("Columna (0-7)");
-				int columna2 = teclado.nextInt();
+				columna2 = teclado.nextInt();
 
 				if(tablero[fila2][columna2] == 'X' || tablero[fila2][columna2] == '·') {
 					tablero[fila][columna] = '·';
 					tablero[fila2][columna2] = 'O';
 					piezaValida = !piezaValida;
+                                        movimientos.setFila(fila);
+                                        movimientos.setColumna(columna);
+                                        movimientos.setFilaDestino(fila2);
+                                        movimientos.setColumnaDestino(columna2);
 					mostrarTablero(tablero);
 				}else {
 					System.out.println("Movimiento invalido");
@@ -140,14 +152,18 @@ public class App {
 
 				System.out.println("Nuevo destino");
 				System.out.println("Fila (0-7)");
-				int fila2 = teclado.nextInt();
+				fila2 = teclado.nextInt();
 				System.out.println("Columna (0-7)");
-				int columna2 = teclado.nextInt();
+				columna2 = teclado.nextInt();
 
 				if(tablero[fila2][columna2] == 'O' || tablero[fila2][columna2] == '·') {
 					tablero[fila][columna] = '·';
 					tablero[fila2][columna2] = 'X';
 					piezaValida = !piezaValida;
+                                        movimientos.setFila(fila);
+                                        movimientos.setColumna(columna);
+                                        movimientos.setFilaDestino(fila2);
+                                        movimientos.setColumnaDestino(columna2);
 					mostrarTablero(tablero);
 				}else {
 					System.out.println("Movimiento invalido");
