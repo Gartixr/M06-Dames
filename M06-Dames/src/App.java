@@ -48,7 +48,7 @@ public class App {
 		mostrarTablero(tablero);
 
 		while (jugando) {
-			moverPieza(tablero, turnoActual);
+			moverPieza(tablero, turnoActual, session);
 			turnoActual = !turnoActual;
                         dp.setTurno(turnoActual);
 
@@ -107,7 +107,7 @@ public class App {
 		
 	}
 
-	private static void moverPieza(char[][] tablero, boolean turno) {
+	private static void moverPieza(char[][] tablero, boolean turno, Session session) {
 		// TODO Auto-generated method stub
 
                 
@@ -173,6 +173,7 @@ public class App {
 				System.out.println("Pieza/posici·n invalida");
 			}
 		}
+                session.save(movimientos);
 
 	}
 
